@@ -5,6 +5,7 @@
 	
 	require_once('classes/db.php');
 	require_once('classes/oauth.php');
+	require_once('yelpInfo.php');
 	
 	$server = 'http://'.$_SERVER['SERVER_NAME'];
 	if (substr($_SERVER['HTTP_REFERER'], 0, strlen($server)) != $server) exit;
@@ -40,11 +41,6 @@
 		
 		return $data;
 	}
-	
-	$yelpKey = 'KO3Utg8VZQNXzWqOM68Npg';
-	$yelpCSecret = '0hGUcVg73kXDiViDas9dvV3LbZI';
-	$yelpToken = 'kOFL8QdOUKoc-ateRPv8ehsPy_WQvR-x';
-	$yelpSecret = 'qCfLjD9sNRC56HFkEBthLzRu0sE';
 	
 	echo yelpRequest("http://api.yelp.com/v2/search?oauth_consumer_key=$yelpKey&oauth_token=$yelpToken&oauth_signature_method=hmac-sha1&oauth_signature=&oauth_timestamp=".time()."&oauth_nonce=".uniqid()."&term=".$_GET['title']."&location=".$_GET['location']."&cll=".$_GET['lat'].','.$_GET['lng']);
 
